@@ -193,7 +193,7 @@ SUBARCH := $(shell uname -m | sed -e s/i.86/i386/ -e s/sun4u/sparc64/ \
 # Note: Some architectures assign CROSS_COMPILE in their arch/*/Makefile
 export KBUILD_BUILDHOST := $(SUBARCH)
 ARCH		?=arm
-CROSS_COMPILE	?=/opt/toolchains/arm-eabi-4.4.3/bin/arm-eabi-
+CROSS_COMPILE	?=~/android/toolchains/arm-cortexa9_neon-linux-gnueabihf/bin/arm-cortexa9_neon-linux-gnueabihf-
 
 # Architecture as present in compile.h
 UTS_MACHINE 	:= $(ARCH)
@@ -368,7 +368,10 @@ KBUILD_CFLAGS   := -Wall -Wundef -Wstrict-prototypes -Wno-trigraphs \
 		   -fno-strict-aliasing -fno-common \
 		   -Werror-implicit-function-declaration \
 		   -Wno-format-security \
-		   -fno-delete-null-pointer-checks
+		   -fno-delete-null-pointer-checks \
+		   -mtune=cortex-a9 -mfpu=neon -munaligned-access \
+		   -ffast-math
+
 KBUILD_AFLAGS_KERNEL :=
 KBUILD_CFLAGS_KERNEL :=
 KBUILD_AFLAGS   := -D__ASSEMBLY__
@@ -557,6 +560,24 @@ endif # $(dot-config)
 # This allow a user to issue only 'make' to build a kernel including modules
 # Defaults to vmlinux, but the arch makefile usually adds further targets
 all: vmlinux
+
+# Flags by @JustArchi
+
+# S3 Cortex A9 optimization
+KBUILD_CFLAGS	+= -marm -march=armv7-a -mcpu=cortex-a9 \
+		   -mtune=cortex-a9 -mfloat-abi=softfp -mfpu=neon
+
+# Main optimization level
+KBUILD_CFLAGS	+= -O3
+
+# LDFLAGS
+LDFLAGS 	+= -O3 --sort-common
+
+# Other flags
+KBUILD_CFLAGS	+= -DNDEBUG -fsection-anchors -funsafe-loop-optimizations \
+		   -fivopts -ftree-loop-im -ftree-loop-ivcanon -funswitch-loops \
+		   -frename-registers -fgcse-sm -fgcse-las -fweb -ftracer \
+		   -fipa-pta -fmodulo-sched -fmodulo-sched-allow-regmoves
 
 ifdef CONFIG_CC_OPTIMIZE_FOR_SIZE
 KBUILD_CFLAGS	+= -Os
