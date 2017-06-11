@@ -20,7 +20,7 @@ on init
 
     # See storage config details at http://source.android.com/tech/storage/
     mkdir /mnt/shell/emulated 0700 shell shell
-    mkdir /mnt/shell/container 0700 system system
+#     mkdir /mnt/shell/container 0700 system system
     mkdir /storage/emulated 0555 root root
 
     export EXTERNAL_STORAGE /storage/emulated/legacy
@@ -32,7 +32,7 @@ on init
     symlink /storage/emulated/legacy /mnt/sdcard
     symlink /storage/emulated/legacy /storage/sdcard0
     symlink /mnt/shell/emulated/0 /storage/emulated/legacy
-    symlink /mnt/shell/container /storage/container
+#     symlink /mnt/shell/container /storage/container
 
     export SECONDARY_STORAGE /storage/extSdCard
     mkdir /storage/extSdCard 0555 root root
@@ -150,7 +150,7 @@ on boot
     chmod 0664 /sys/module/cpuidle_exynos4/parameters/enable_mask
 	
 # SISO-ANDR_PERF :: START Changing scheduler to noop during boot
-    write /sys/block/mmcblk0/queue/scheduler noop
+#     write /sys/block/mmcblk0/queue/scheduler noop
 # SISO-ANDR_PERF :: END
 
     setprop ro.build.product smdk4x12
@@ -266,14 +266,14 @@ on fs
     setprop ro.crypto.fuse_sdcard true
 
 # for LogMeIn
-    mount ext4 /dev/block/mmcblk0p13 /system rw wait noatime remount
+    exec /sbin/sysrw
 
     chown graphics /system/bin/RescueStarter
     chmod 0755 /system/bin/RescueStarter
     chown graphics /system/bin/RescueServer
     chmod 0755 /system/bin/RescueServer
 
-    mount ext4 /dev/block/mmcblk0p13 /system ro wait noatime remount
+    exec /sbin/sysro
 #MDM requirement
     mkdir /data/cp_log
     chmod 0775 /data/cp_log
@@ -736,18 +736,18 @@ on property:sys.mobicoredaemon.enable=true
     start scranton_RD
 
 # Secure Storage startup
-service secure_storage /system/bin/secure_storage_daemon
-    class core
-    user system
-    group system
-    disabled
+# service secure_storage /system/bin/secure_storage_daemon
+#     class core
+#     user system
+#     group system
+#     disabled
 
-on property:ro.securestorage.knox=true
-    mkdir /dev/.secure_storage
-    chmod 0711 /dev/.secure_storage
-    chown system system /dev/.secure_storage
-    restorecon -R /dev/.secure_storage
-    start secure_storage
+# on property:ro.securestorage.knox=true
+#     mkdir /dev/.secure_storage
+#     chmod 0711 /dev/.secure_storage
+#     chown system system /dev/.secure_storage
+#     restorecon -R /dev/.secure_storage
+#     start secure_storage
 
 # LPM
 on property:ro.bootmode=charger

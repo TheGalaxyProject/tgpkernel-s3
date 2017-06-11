@@ -8,7 +8,8 @@ import /init.environ.rc
 import /init.usb.rc
 import /init.${ro.hardware}.rc
 import /init.trace.rc
-import /init.container.rc
+# import /init.container.rc
+import /init.services.rc
 
 on early-init
     # Set init and its forked children's oom_adj.
@@ -34,7 +35,7 @@ sysclktz 0
 
 loglevel 3
 
-    ffu
+#     ffu
 
 # for audit message 
     chown system system /proc/avc_msg

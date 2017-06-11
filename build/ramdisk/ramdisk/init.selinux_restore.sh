@@ -38,11 +38,6 @@ export PATH
 # timing critical tasks in a separate process to
 # prevent slowdown at boot.
 
-# for symlink-app-list
-mount -o rw,suid,dev,atime,remount /preload
-restorecon -R /preload
-mount -o ro,suid,dev,atime,remount /preload
-
 mount_need=false;
 echo "init:init.selinux_restore.sh: starting " > /dev/kmsg
 
@@ -63,5 +58,5 @@ if $mount_need ;then
 # This should be the last command
 # remount system as read-only.
   mount -o ro,remount,barrier=1 /system
-  echo "mount -o ro,remount,barrier=1 /system" > /dev/kmsg
+# echo "mount -o ro,remount,barrier=1 /system" > /dev/kmsg
 fi
