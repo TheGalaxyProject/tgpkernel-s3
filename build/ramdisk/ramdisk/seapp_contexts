@@ -41,11 +41,9 @@ user=smartcard domain=platform_app type=platform_app_data_file
 user=system name=com.sec.android.app.sysscope domain=syscope_app type=system_data_file
 user=_app seinfo=samsung domain=samsung_app type=app_data_file
 user=_app seinfo=samsung name=com.sec.android.app.samsungapps domain=samsung_app type=app_data_file
-user=_app seinfo=samsung name=com.sec.android.app.sns3 domain=samsung_app type=app_data_file
 user=_app seinfo=untrusted name=com.vlingo.midas domain=samsung_app type=app_data_file
 user=_app seinfo=untrusted name=tv.peel.samsung.app domain=samsung_app type=app_data_file
 user=_app seinfo=untrusted name=tv.peel.samsung.widget domain=samsung_app type=app_data_file
-user=_app seinfo=untrusted name=com.linkedin.android domain=samsung_app type=app_data_file
 user=_app seinfo=untrusted name=com.rageconsulting.android.lightflow domain=filtered_untrusted_app type=app_data_file
 user=_app seinfo=untrusted name=com.rageconsulting.android.lightflowlite domain=filtered_untrusted_app type=app_data_file
 user=_app seinfo=untrusted name=rubberbigpepper.lgCamera domain=filtered_untrusted_app type=app_data_file
