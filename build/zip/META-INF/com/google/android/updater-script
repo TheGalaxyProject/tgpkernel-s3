@@ -1,6 +1,6 @@
 ui_print(" ");
-ui_print("TGPKernel for I9305");
-ui_print("-------------------");
+ui_print("TGPKernel Lite for I9305");
+ui_print("------------------------");
 ui_print(" ");
 ui_print("Flashing Kernel");
 package_extract_file("boot.img", "/tmp/boot.img");
