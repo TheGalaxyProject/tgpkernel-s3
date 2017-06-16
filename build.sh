@@ -7,7 +7,7 @@
 # ---------
 # VARIABLES
 # ---------
-BUILD_SCRIPT=2.41
+BUILD_SCRIPT=2.42
 VERSION_NUMBER=$(<build/kernel_version)
 ARCH=arm
 TOOLCHAIN_PATH=~/android/toolchains/arm-cortexa9_neon-linux-gnueabihf/bin
@@ -28,8 +28,6 @@ make clean
 make ARCH=arm distclean
 rm -f $RDIR/build/build.log
 rm -f $RDIR/arch/$ARCH/boot/Image
-rm -f $RDIR/build/boot.img
-rm -f $RDIR/build/TGP*.zip
 rm -f $RDIR/build/$RAMDISKLOC/image-new.img
 rm -f $RDIR/build/$RAMDISKLOC/ramdisk-new.cpio.gz
 rm -f $RDIR/build/$RAMDISKLOC/split_img/boot.img-zImage
