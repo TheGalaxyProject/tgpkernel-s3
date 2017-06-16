@@ -14,7 +14,7 @@ TOOLCHAIN_PATH=~/android/toolchains/arm-cortexa9_neon-linux-gnueabihf/bin
 BUILD_CROSS_COMPILE=$TOOLCHAIN_PATH/arm-cortexa9_neon-linux-gnueabihf-
 BUILD_JOB_NUMBER=`grep processor /proc/cpuinfo|wc -l`
 RDIR=$(pwd)
-KERNELNAME=TGPKernel
+KERNELNAME=TGPKernel.Lite
 ZIPLOC=zip
 RAMDISKLOC=ramdisk
 KERNEL_DEFCONFIG=tgpkernel_defconfig
@@ -168,12 +168,12 @@ fi
 # -------------
 rm -rf ./build/build.log
 clear
-echo "TGPKernel S3 I9305 Build Script v$BUILD_SCRIPT -- Kernel Version: v$VERSION_NUMBER"
+echo "TGPKernel Lite S3 I9305 Build Script v$BUILD_SCRIPT -- Kernel Version: v$VERSION_NUMBER"
 echo ""
 echo " 0) Clean Workspace"
 echo ""
-echo " 1) Build TGPKernel boot.img for S3 I9305"
-echo " 2) Build TGPKernel boot.img and .zip for S3 I9305"
+echo " 1) Build TGPKernel Lite boot.img for S3 I9305"
+echo " 2) Build TGPKernel Lite boot.img and .zip for S3 I9305"
 echo ""
 echo " 9) Exit"
 echo ""
